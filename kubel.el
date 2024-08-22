@@ -678,7 +678,7 @@ Allows simple apply of the changes made.
                     (when (tramp-tramp-file-p default-directory)
                       (with-parsed-tramp-file-name default-directory nil
                         (format "/%s%s:%s@%s:" (or hop "") method user host)))
-                    ""))
+                    temporary-file-directory))
   (let* ((filename-without-tramp-prefix (format "/tmp/kubel/%s-%s.yaml"
                                                 (replace-regexp-in-string "/" "_"
                                                                           (replace-regexp-in-string "\*\\| " "" (buffer-name)))
