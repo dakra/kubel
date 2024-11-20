@@ -677,11 +677,10 @@ Allows simple apply of the changes made.
   (setq dir-prefix (or
                     (when (tramp-tramp-file-p default-directory)
                       (with-parsed-tramp-file-name default-directory nil
-                        (format "/%s%s:%s@%s:" (or hop "") method user host)))
+                                                   (format "/%s%s:%s@%s:" (or hop "") method user host)))
                     temporary-file-directory))
   (let* ((filename-without-tramp-prefix (format "/tmp/kubel/%s-%s.yaml"
-                                                (replace-regexp-in-string "/" "_"
-                                                                          (replace-regexp-in-string "\*\\| " "" (buffer-name)))
+                                                (replace-regexp-in-string "[/\\:*?\"<>|]" "_" (buffer-name))
                                                 (floor (float-time))))
          (filename (format "%s%s" dir-prefix filename-without-tramp-prefix)))
     (when (y-or-n-p "Apply the changes? ")
